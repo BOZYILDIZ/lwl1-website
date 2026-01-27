@@ -576,7 +576,7 @@ function CTASection() {
           </h2>
           
           <p className="text-xl lg:text-2xl text-white/70 mb-14 max-w-3xl mx-auto leading-relaxed">
-            Rejoignez les entreprises qui ont choisi <strong className="text-white">Netz Informatique</strong> 
+            Rejoignez les entreprises qui ont choisi <strong className="text-white">Netz Informatique</strong>{' '}
             pour leur <strong className="text-white">transformation digitale</strong> et découvrez le 
             potentiel de l'<strong className="text-white">intelligence artificielle</strong>.
           </p>
