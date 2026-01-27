@@ -635,7 +635,7 @@ function Footer() {
               Netz Informatique
             </a>
             <a 
-              href="mailto:contact@netz-informatique.fr"
+              href="mailto:contact@netzinformatique.fr"
               className="text-white/70 hover:text-white transition-colors text-sm"
             >
               Contact
