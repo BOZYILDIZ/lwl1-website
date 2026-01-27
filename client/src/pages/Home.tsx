@@ -201,8 +201,8 @@ function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+      {/* Scroll Indicator - hidden on mobile */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 hidden sm:block">
         <div className="w-7 h-12 border-2 border-white/30 rounded-full flex justify-center p-2">
           <div className="w-1.5 h-3 bg-white/60 rounded-full animate-bounce" />
         </div>
