@@ -145,11 +145,11 @@ function HeroSection() {
       />
       
       {/* Content */}
-      <div className="relative z-10 container text-center px-4">
+      <div className="relative z-10 container text-center px-4 pt-20 md:pt-0">
         <div className="max-w-5xl mx-auto">
-          {/* Badge */}
+          {/* Badge - hidden on mobile to avoid overlap */}
           <div 
-            className={`inline-flex items-center gap-2 px-5 py-2.5 mb-10 glass rounded-full transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`hidden sm:inline-flex items-center gap-2 px-5 py-2.5 mb-10 glass rounded-full transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           >
             <Sparkles className="w-4 h-4 text-white/80" />
             <span className="text-sm text-white/80 font-medium tracking-wide">
@@ -666,6 +666,7 @@ function Footer() {
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -702,57 +703,104 @@ function Navigation() {
     { id: 'expertise', label: 'Expertise' },
   ];
 
+  const handleMobileNavClick = (id: string) => {
+    scrollToSection(id);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'glass py-4' : 'py-6'
-      }`}
-    >
-      <div className="container flex items-center justify-between">
-        {/* Logo */}
-        <button 
-          onClick={() => scrollToSection('hero')}
-          className="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          LWL1<span className="text-white/50">.fr</span>
-        </button>
-        
-        {/* Nav Links - Desktop */}
-        <div className="hidden md:flex items-center gap-10">
+    <>
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled ? 'glass py-4' : 'py-6'
+        }`}
+      >
+        <div className="container flex items-center justify-between">
+          {/* Logo */}
+          <button 
+            onClick={() => scrollToSection('hero')}
+            className="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            LWL1<span className="text-white/50">.fr</span>
+          </button>
+          
+          {/* Nav Links - Desktop */}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item) => (
+              <button 
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`text-sm transition-colors relative ${
+                  activeSection === item.id ? 'text-white' : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-px bg-white" />
+                )}
+              </button>
+            ))}
+            <Button 
+              size="sm"
+              className="bg-white text-black hover:bg-white/90 rounded-full px-6"
+              onClick={() => window.open('https://netz-informatique.fr', '_blank')}
+            >
+              Netz Informatique
+            </Button>
+          </div>
+          
+          {/* Mobile Hamburger Button */}
+          <button 
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu"
+          >
+            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+            }`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMobileMenuOpen ? 'opacity-0' : ''
+            }`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+            }`} />
+          </button>
+        </div>
+      </nav>
+      
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-lg transition-all duration-500 md:hidden ${
+          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full gap-8">
           {navItems.map((item) => (
             <button 
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`text-sm transition-colors relative ${
-                activeSection === item.id ? 'text-white' : 'text-white/60 hover:text-white'
+              onClick={() => handleMobileNavClick(item.id)}
+              className={`text-2xl font-medium transition-colors ${
+                activeSection === item.id ? 'text-white' : 'text-white/60'
               }`}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               {item.label}
-              {activeSection === item.id && (
-                <span className="absolute -bottom-1 left-0 right-0 h-px bg-white" />
-              )}
             </button>
           ))}
           <Button 
-            size="sm"
-            className="bg-white text-black hover:bg-white/90 rounded-full px-6"
-            onClick={() => window.open('https://netz-informatique.fr', '_blank')}
+            size="lg"
+            className="bg-white text-black hover:bg-white/90 rounded-full px-8 mt-4"
+            onClick={() => {
+              window.open('https://netz-informatique.fr', '_blank');
+              setIsMobileMenuOpen(false);
+            }}
           >
             Netz Informatique
           </Button>
         </div>
-        
-        {/* Mobile CTA */}
-        <Button 
-          size="sm"
-          className="md:hidden bg-white text-black hover:bg-white/90 rounded-full"
-          onClick={() => window.open('https://netz-informatique.fr', '_blank')}
-        >
-          Contact
-        </Button>
       </div>
-    </nav>
+    </>
   );
 }
 
