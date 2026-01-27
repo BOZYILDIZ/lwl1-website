@@ -1,0 +1,11 @@
+# robots.txt pour lwl1.fr
+# Vitrine technologique de Netz Informatique
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lwl1.fr/sitemap.xml
+
+# Crawl-delay pour éviter la surcharge
+Crawl-delay: 1
