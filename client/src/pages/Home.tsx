@@ -183,7 +183,7 @@ function HeroSection() {
             <Button 
               size="lg"
               className="bg-white text-black hover:bg-white/90 px-10 py-7 text-lg font-semibold group rounded-full"
-              onClick={() => window.open('https://netz-informatique.fr', '_blank')}
+              onClick={() => window.open('https://netzinformatique.fr', '_blank')}
             >
               Découvrir Netz Informatique
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -585,7 +585,7 @@ function CTASection() {
             <Button 
               size="lg"
               className="bg-white text-black hover:bg-white/90 px-12 py-8 text-xl font-semibold group rounded-full"
-              onClick={() => window.open('https://netz-informatique.fr', '_blank')}
+              onClick={() => window.open('https://netzinformatique.fr', '_blank')}
             >
               Contactez Netz Informatique
               <ChevronRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -627,7 +627,7 @@ function Footer() {
           {/* Links */}
           <div className="flex items-center justify-center gap-10">
             <a 
-              href="https://netz-informatique.fr" 
+              href="https://netzinformatique.fr" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/70 hover:text-white transition-colors text-sm"
@@ -744,7 +744,7 @@ function Navigation() {
             <Button 
               size="sm"
               className="bg-white text-black hover:bg-white/90 rounded-full px-6"
-              onClick={() => window.open('https://netz-informatique.fr', '_blank')}
+              onClick={() => window.open('https://netzinformatique.fr', '_blank')}
             >
               Netz Informatique
             </Button>
@@ -792,7 +792,7 @@ function Navigation() {
             size="lg"
             className="bg-white text-black hover:bg-white/90 rounded-full px-8 mt-4"
             onClick={() => {
-              window.open('https://netz-informatique.fr', '_blank');
+              window.open('https://netzinformatique.fr', '_blank');
               setIsMobileMenuOpen(false);
             }}
           >
